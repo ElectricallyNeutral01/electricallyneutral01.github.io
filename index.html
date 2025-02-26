@@ -1,5 +1,10 @@
 <html>
     <body>
+        <!-- Fullscreen Button -->
+        <button id="fullscreen-btn" style="position: absolute; top: 10px; right: 10px; z-index: 999; padding: 5px 10px; font-size: 14px; background: rgba(0, 0, 0, 0.6); color: white; border: none; cursor: pointer; border-radius: 5px;">
+            🔳 Fullscreen
+        </button>
+
         <div class="tradingview-widget-container" style="height:100%;width:100%">
             <div class="tradingview-widget-container__widget" style="height:calc(100% - 32px);width:100%"></div>
             <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-advanced-chart.js" async>
@@ -21,5 +26,17 @@
                 }
             </script>
         </div>
+
+        <script>
+            document.getElementById("fullscreen-btn").addEventListener("click", function() {
+                if (!document.fullscreenElement) {
+                    document.documentElement.requestFullscreen().catch(err => {
+                        console.log(`Error attempting to enable full-screen mode: ${err.message}`);
+                    });
+                } else {
+                    document.exitFullscreen();
+                }
+            });
+        </script>
     </body>
 </html>
